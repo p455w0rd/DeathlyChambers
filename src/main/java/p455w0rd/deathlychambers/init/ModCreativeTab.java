@@ -13,33 +13,29 @@
  * You should have received a copy of the MIT License along with Deathly
  * Chambers Mod. If not, see <https://opensource.org/licenses/MIT>.
  */
-package p455w0rd.deathlychambers.proxy;
+package p455w0rd.deathlychambers.init;
 
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import p455w0rd.deathlychambers.world.DCWorldProvider;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 
 /**
  * @author p455w0rd on Jul 29, 2018
  *
  */
-public class CommonProxy {
+public class ModCreativeTab extends CreativeTabs {
 
-	public void preInit(FMLPreInitializationEvent e) {
-		DCWorldProvider.register();
-		//ModConfig.preInit();
-		//ModItems.preInit();
-		//ModNetworking.preInit();
-		//ModEvents.preInit();
-		//ModIntegration.preInit();
+	private static final ModCreativeTab INSTANCE = new ModCreativeTab();
+
+	private ModCreativeTab() {
+		super(ModGlobals.MODID);
 	}
 
-	public void init(FMLInitializationEvent e) {
+	@Override
+	public ItemStack getTabIconItem() {
+		return new ItemStack(ModBlocks.PORTAL);
 	}
 
-	public void postInit(FMLPostInitializationEvent e) {
-		//ModNetworking.postInit();
+	public static final ModCreativeTab getInstance() {
+		return INSTANCE;
 	}
-
 }

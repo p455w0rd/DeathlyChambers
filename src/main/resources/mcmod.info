@@ -1,7 +1,7 @@
 [{
     "modid": "deathlychambers",
     "name": "Deathly Chambers",
-    "description": "Spiritual successor to Runic Dungeons for 1.12.2+",
+    "description": "A mmod inspired by Runic Dungeons for 1.12.2+",
     "version": "${version}",
     "mcversion": "1.12.2",
 	"url": "",

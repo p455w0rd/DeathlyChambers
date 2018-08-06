@@ -13,33 +13,14 @@
  * You should have received a copy of the MIT License along with Deathly
  * Chambers Mod. If not, see <https://opensource.org/licenses/MIT>.
  */
-package p455w0rd.deathlychambers.proxy;
-
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import p455w0rd.deathlychambers.world.DCWorldProvider;
+package p455w0rd.deathlychambers.api;
 
 /**
  * @author p455w0rd on Jul 29, 2018
  *
  */
-public class CommonProxy {
+public interface IModelProvider {
 
-	public void preInit(FMLPreInitializationEvent e) {
-		DCWorldProvider.register();
-		//ModConfig.preInit();
-		//ModItems.preInit();
-		//ModNetworking.preInit();
-		//ModEvents.preInit();
-		//ModIntegration.preInit();
-	}
-
-	public void init(FMLInitializationEvent e) {
-	}
-
-	public void postInit(FMLPostInitializationEvent e) {
-		//ModNetworking.postInit();
-	}
+	void registerModel();
 
 }

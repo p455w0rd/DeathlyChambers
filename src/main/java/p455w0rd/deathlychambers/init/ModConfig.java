@@ -13,33 +13,28 @@
  * You should have received a copy of the MIT License along with Deathly
  * Chambers Mod. If not, see <https://opensource.org/licenses/MIT>.
  */
-package p455w0rd.deathlychambers.proxy;
+package p455w0rd.deathlychambers.init;
 
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import p455w0rd.deathlychambers.world.DCWorldProvider;
+import java.io.File;
+
+import net.minecraftforge.common.config.Configuration;
 
 /**
  * @author p455w0rd on Jul 29, 2018
  *
  */
-public class CommonProxy {
+public class ModConfig {
 
-	public void preInit(FMLPreInitializationEvent e) {
-		DCWorldProvider.register();
-		//ModConfig.preInit();
-		//ModItems.preInit();
-		//ModNetworking.preInit();
-		//ModEvents.preInit();
-		//ModIntegration.preInit();
-	}
+	public static Configuration config;
+	public static int dimID = 43;
+	public static boolean allowSleeping = true;
 
-	public void init(FMLInitializationEvent e) {
-	}
-
-	public void postInit(FMLPostInitializationEvent e) {
-		//ModNetworking.postInit();
+	public static void load(File configFile) {
+		config = new Configuration(configFile);
+		config.load();
+		dimID = config.get(Configuration.CATEGORY_GENERAL, "DimensionID", 420, "This is the ID of the dimension in the mod, this should be unique to Deathly Chambers").getInt();
+		allowSleeping = config.get(Configuration.CATEGORY_GENERAL, "AllowSleeping", true, "Allow sleeping in the custom dimension").getBoolean();
+		config.save();
 	}
 
 }

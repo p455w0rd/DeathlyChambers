@@ -15,20 +15,38 @@
  */
 package p455w0rd.deathlychambers.init;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.block.Block;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import p455w0rd.deathlychambers.api.IModelProvider;
+import p455w0rd.deathlychambers.block.BlockPortal;
+
 /**
  * @author p455w0rd on Jul 29, 2018
  *
  */
-public class ModGlobals {
+public class ModBlocks {
 
-	public static final String MODID = "deathlychambers";
-	public static final String VERSION = "1.0.0";
-	public static final String NAME = "Deathly Chambers";
-	public static final String SERVER_PROXY = "p455w0rd.deathlychambers.proxy.CommonProxy";
-	public static final String CLIENT_PROXY = "p455w0rd.deathlychambers.proxy.ClientProxy";
-	public static final String GUI_FACTORY = "p455w0rd.deathlychambers.init.ModGuiFactory";
-	public static final String DEP_LIST = "";
-	public static final String CONFIG_FILE = "config/DeathlyChambers.cfg";
-	public static boolean inDev = false;
+	public static final BlockPortal PORTAL = new BlockPortal();
+	private static List<Block> list = new ArrayList<>();
+
+	public static List<Block> getList() {
+		if (list.isEmpty()) {
+			list.add(PORTAL);
+		}
+		return list;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public static void registerModels() {
+		for (Block block : list) {
+			if (block instanceof IModelProvider) {
+				((IModelProvider) block).registerModel();
+			}
+		}
+	}
 
 }
